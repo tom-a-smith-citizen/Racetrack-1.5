@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<NetworkLink>
+<name>Loads women.kml</name>
+<Link>
+<href>http://10.10.1.29:8080/womenPoint</href>
+</Link>
+</NetworkLink>
+</kml>

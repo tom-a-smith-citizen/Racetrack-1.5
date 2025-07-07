@@ -1,0 +1,88 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue May 14 11:37:21 2024
+
+@author: TOSmith
+"""
+
+import os
+from selenium import webdriver
+
+# Load the HTML content
+html_content = """
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>#map_34a07b683fb99879c0d8327e754cd645 {position: relative;width: 100.0%;height: 100.0%;left: 0.0%;top: 0.0%;}.leaflet-container { font-size: 1rem; }</style>
+</head>
+<body>
+    <div class="folium-map" id="map_34a07b683fb99879c0d8327e754cd645" ></div>
+</body>
+<script>
+    var map_34a07b683fb99879c0d8327e754cd645 = L.map(
+        "map_34a07b683fb99879c0d8327e754cd645",
+        {
+            center: [42.96047, -85.65618],
+            crs: L.CRS.EPSG3857,
+            zoom: 150,
+            zoomControl: false,
+            preferCanvas: false,
+        }
+    );
+
+    var tile_layer_aa81802097d22afb20645614d8e305c2 = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        {"attribution": "Esri", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+    );
+    tile_layer_aa81802097d22afb20645614d8e305c2.addTo(map_34a07b683fb99879c0d8327e754cd645);
+
+    var marker_308ce82bdbb1557996771cc2dee87cf9 = L.marker(
+        [42.96047, -85.65618],
+        {}
+    ).addTo(map_34a07b683fb99879c0d8327e754cd645);
+
+    var marker_b0e2d35c72688b0ce69b165e30bde67d = L.marker(
+        [42.96523, -85.67109],
+        {}
+    ).addTo(map_34a07b683fb99879c0d8327e754cd645);
+</script>
+</html>
+"""
+
+# Create a temporary HTML file
+with open("temp.html", "w") as file:
+    file.write(html_content)
+
+# Initialize the Chrome webdriver
+driver = webdriver.Chrome()
+
+# Open the HTML file
+driver.get("file://" + os.path.abspath("temp.html"))
+
+# Move the markers to new GPS coordinates
+new_coords = [(42.96057, -85.65628), (42.96528, -85.67114)]  # Example new coordinates
+for i, coord in enumerate(new_coords):
+    latitude, longitude = coord
+    driver.execute_script(f"""
+        var markers = document.getElementsByClassName('leaflet-marker-icon');
+        markers[{i}].style.transition = 'all 1s linear';
+        markers[{i}].style.transform = 'translate(-50%, -50%) translate({latitude}px, {longitude}px)';
+    """)

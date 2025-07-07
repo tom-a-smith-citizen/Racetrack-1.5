@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<NetworkLinkControl>
+  <Update>
+    <targetHref>http://studiosrv.woodtv.net/racetrack/womenPoint.kml</targetHref>
+    <Change>
+      <Placemark targetId="women123">
+        <Point>
+        <coordinates>-85.66093333333333,42.98426666666667,0</coordinates>
+        </Point>
+      </Placemark>
+    </Change>
+  </Update>
+</NetworkLinkControl>
+</kml>

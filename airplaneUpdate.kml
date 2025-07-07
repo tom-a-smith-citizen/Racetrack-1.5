@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<NetworkLinkControl>
+  <Update>
+    <targetHref>http://studiosrv.woodtv.net/racetrack/airplanePoint.kml</targetHref>
+    <Change>
+      <Placemark targetId="airplane123">
+        <Point>
+        <coordinates>-85.293797,43.097038,0</coordinates>
+        </Point>
+      </Placemark>
+    </Change>
+  </Update>
+</NetworkLinkControl>
+</kml>

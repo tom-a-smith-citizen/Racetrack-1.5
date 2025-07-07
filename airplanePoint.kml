@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <Placemark id="airplane123">
+  <Style>
+  <IconStyle>
+  <colorMode>normal</colorMode>
+  <scale>3</scale>
+  <heading>0</heading>
+  <Icon><href>http://studiosrv.woodtv.net/racetrack/airplane.png</href></Icon>
+  </IconStyle>
+  </Style>
+    <Point>
+      <coordinates>42.92157781377413, -85.71327426273638,0</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>
